@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">RemotePrinter</string>
+    <string name="title_activity_main">RemotePrinter</string>
+    <string name="package_name">com.smartprinter.remote</string>
+    <string name="custom_url_scheme">com.smartprinter.remote</string>
+</resources>

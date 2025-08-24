@@ -1,0 +1,40 @@
+# Node.js dependencies
+node_modules/
+client-new/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Python environment
+.venv/
+__pycache__/
+*.pyc
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# IDE & system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local environment & config
+.env
+*.local
+
+# Capacitor / Android / iOS build files
+android/app/build/
+ios/build/
+ios/Pods/
+
+# Uploaded files (if you don’t want them in repo)
+uploads/
+
+# Other
+*.iml

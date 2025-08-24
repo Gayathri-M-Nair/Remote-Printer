@@ -1,0 +1,5 @@
+{
+  "appId": "com.smartprinter.remote",
+  "appName": "RemotePrinter",
+  "webDir": "client-new/build"
+}
