@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import API_BASE from "../config";
 
 function Queue() {
   const navigate = useNavigate();

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/common.css";
+import API_BASE from "../config"; // ✅ import API base
+import { setToken } from "../utils/auth"; // ✅ use auth.js utilities
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -13,7 +15,9 @@ function Login() {
     e.preventDefault();
 
     const loginURL =
-      userType === "admin" ? "/api/admin-login" : "/api/login";
+      userType === "admin"
+        ? `${API_BASE}/api/admin-login`
+        : `${API_BASE}/api/login`;
 
     try {
       const response = await fetch(loginURL, {
@@ -24,12 +28,13 @@ function Login() {
 
       const data = await response.json();
       if (data.token) {
-        localStorage.setItem("token", data.token);
+        setToken(data.token);  // ✅ uses auth.js
         navigate("/upload");
       } else {
         setError("Login failed");
       }
-    } catch {
+    } catch (err) {
+      console.error("Login error:", err);
       setError("Login failed");
     }
   };

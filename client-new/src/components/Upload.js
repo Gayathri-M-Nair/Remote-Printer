@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE from "../config";   // ✅ default import (no curly braces)
 
 function Upload() {
   const [file, setFile] = useState(null);
@@ -19,11 +20,11 @@ function Upload() {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("/api/upload", formData);
+      const res = await axios.post(`${API_BASE}/api/upload`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
       setMessage(res.data.message);
-      setTimeout(() => {
-        navigate("/preferences");
-      }, 1000);
+      setTimeout(() => navigate("/preferences"), 1000);
     } catch (err) {
       setMessage("Upload failed");
       console.error(err);
@@ -47,22 +48,15 @@ function Upload() {
 
       {/* Upload Card */}
       <div className="bg-[#2A2A2A] p-8 rounded-xl shadow-[8px_8px_0px_rgba(0,0,0,0.5)] w-96 flex flex-col items-center space-y-4">
-        {/* File Input */}
         <label className="bg-[#A3D977] text-black px-4 py-2 rounded-full cursor-pointer hover:opacity-90 font-medium">
           CHOOSE FILE
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleFileChange}
-          />
+          <input type="file" className="hidden" onChange={handleFileChange} />
         </label>
 
-        {/* File Name */}
         <p className="text-white text-sm">
           {file ? file.name : "No file chosen"}
         </p>
 
-        {/* Upload Button */}
         <button
           onClick={handleUpload}
           className="bg-[#9C6ADE] hover:bg-[#8856d9] text-white px-6 py-2 rounded-full font-semibold shadow-md"
@@ -70,7 +64,6 @@ function Upload() {
           UPLOAD
         </button>
 
-        {/* Message */}
         {message && (
           <p className="mt-2 text-center text-sm text-green-400">{message}</p>
         )}
